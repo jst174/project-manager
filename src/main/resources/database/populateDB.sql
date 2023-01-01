@@ -22,3 +22,17 @@ VALUES (7, 'Kimmie', 'Lazenbury', 'klazenbury3@gnu.org', 'VP Product Management'
 INSERT INTO employee
 VALUES (8, 'Kimmie', 'Lazenbury', 'klazenbury3@gnu.org', 'VP Product Management', '514-570-2309',
         'https://www.bootdey.com/img/Content/avatar/avatar4.png');
+
+
+
+insert into address (id, country, city, street) values (1, 'China', 'Yaodu', 'Surrey');
+insert into address (id, country, city, street) values (2, 'Thailand', 'Sa Kaeo', 'Mosinee');
+insert into address (id, country, city, street) values (3, 'China', 'Shuangxikou', 'Fallview');
+insert into address (id, country, city, street) values (4, 'Indonesia', 'Waso', 'Montana');
+insert into address (id, country, city, street) values (5, 'China', 'Shigou', 'Vermont');
+
+INSERT INTO client (id, name) VALUES (1, 'Brusnika');
+INSERT INTO client (id, name) VALUES (2, 'Atom');
+INSERT INTO client (id, name) VALUES (3, 'LSR');
+INSERT INTO client (id, name) VALUES (4, 'GLORAX');
+
