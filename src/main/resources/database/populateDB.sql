@@ -25,14 +25,33 @@ VALUES (8, 'Kimmie', 'Lazenbury', 'klazenbury3@gnu.org', 'VP Product Management'
 
 
 
-insert into address (id, country, city, street) values (1, 'China', 'Yaodu', 'Surrey');
-insert into address (id, country, city, street) values (2, 'Thailand', 'Sa Kaeo', 'Mosinee');
-insert into address (id, country, city, street) values (3, 'China', 'Shuangxikou', 'Fallview');
-insert into address (id, country, city, street) values (4, 'Indonesia', 'Waso', 'Montana');
-insert into address (id, country, city, street) values (5, 'China', 'Shigou', 'Vermont');
+insert into address (id, country, city, street)
+values (1, 'China', 'Yaodu', 'Surrey');
+insert into address (id, country, city, street)
+values (2, 'Thailand', 'Sa Kaeo', 'Mosinee');
+insert into address (id, country, city, street)
+values (3, 'China', 'Shuangxikou', 'Fallview');
+insert into address (id, country, city, street)
+values (4, 'Indonesia', 'Waso', 'Montana');
+insert into address (id, country, city, street)
+values (5, 'China', 'Shigou', 'Vermont');
 
-INSERT INTO client (id, name) VALUES (1, 'Brusnika');
-INSERT INTO client (id, name) VALUES (2, 'Atom');
-INSERT INTO client (id, name) VALUES (3, 'LSR');
-INSERT INTO client (id, name) VALUES (4, 'GLORAX');
+INSERT INTO client (id, name)
+VALUES (1, 'Brusnika');
+INSERT INTO client (id, name)
+VALUES (2, 'Atom');
+INSERT INTO client (id, name)
+VALUES (3, 'LSR');
+INSERT INTO client (id, name)
+VALUES (4, 'GLORAX');
 
+INSERT INTO project (id, name, address_id, client_id, employee_id, image_url)
+values (1, 'Living house', 1, 1, 1, 'http://dummyimage.com/250x250.png/dddddd/000000');
+INSERT INTO project (id, name, address_id, client_id, employee_id, image_url)
+values (2, 'Factory', 2, 2, 2, 'http://dummyimage.com/250x250.png/ff4444/ffffff');
+INSERT INTO project (id, name, address_id, client_id, employee_id, image_url)
+values (3, 'Supermarket', 3, 3, 3, 'http://dummyimage.com/250x250.png/5fa2dd/ffffff');
+INSERT INTO project (id, name, address_id, client_id, employee_id, image_url)
+values (4, 'Mall', 4, 4, 4, 'http://dummyimage.com/250x250.png/dddddd/000000');
+INSERT INTO project (id, name, address_id, client_id, employee_id, image_url)
+values (5, 'Living house 2', 5, 2, 5, 'http://dummyimage.com/250x250.png/5fa2dd/ffffff');

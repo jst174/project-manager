@@ -20,17 +20,19 @@ public class Project {
     @ManyToOne
     @JoinColumn(name = "employee_id")
     private Employee projectManager;
+    private String imageUrl;
     //private List<Employee> employees;
 
 
     public Project() {
     }
 
-    public Project(String name, Address address, Client client, Employee projectManager) {
+    public Project(String name, Address address, Client client, Employee projectManager, String imageUrl) {
         this.name = name;
         this.address = address;
         this.client = client;
         this.projectManager = projectManager;
+        this.imageUrl = imageUrl;
     }
 
     public Long getId() {
@@ -71,5 +73,13 @@ public class Project {
 
     public void setProjectManager(Employee projectManager) {
         this.projectManager = projectManager;
+    }
+
+    public String getImageUrl() {
+        return imageUrl;
+    }
+
+    public void setImageUrl(String imageUrl) {
+        this.imageUrl = imageUrl;
     }
 }

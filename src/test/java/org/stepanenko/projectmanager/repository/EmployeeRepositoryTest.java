@@ -6,8 +6,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.stepanenko.projectmanager.model.Employee;
 
+import java.util.Optional;
+
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
-import static org.junit.jupiter.api.Assertions.*;
 
 @DataJpaTest
 class EmployeeRepositoryTest {
@@ -21,18 +22,18 @@ class EmployeeRepositoryTest {
     }
 
     @Test
-    void givenNotExistsEmail_whenIsExistsEmail_returnFalse() {
+    void givenNotExistsEmail_whenIsExistsEmail_returnEmpty() {
         String email = "martin84@gmail.com";
 
-        boolean expected = employeeRepository.isExistsEmail(email);
+        Optional<Employee> actual = employeeRepository.findByEmail(email);
 
-        assertThat(expected).isFalse();
+        assertThat(actual).isEqualTo(Optional.empty());
     }
 
     @Test
-    void givenExistsEmail_whenIsExistsEmail_returnTrue() {
+    void givenExistsEmail_whenIsExistsEmail_returnEmployee() {
         String email = "martin@gmail.com";
-        Employee employee = new Employee(
+        Employee expected = new Employee(
                 "Robert",
                 "Martin",
                 email,
@@ -40,26 +41,26 @@ class EmployeeRepositoryTest {
                 "234234324",
                 "some url");
 
-        employeeRepository.save(employee);
+        employeeRepository.save(expected);
 
-        boolean expected = employeeRepository.isExistsEmail(email);
+        Employee actual = employeeRepository.findByEmail(email).get();
 
-        assertThat(expected).isTrue();
+        assertThat(actual).isEqualTo(expected);
     }
 
     @Test
     void givenNotExistsPhone_whenIsExistsPhone_returnFalse() {
         String phone = "099324423643";
 
-        boolean expected = employeeRepository.isExistsPhone(phone);
+        Optional<Employee> actual = employeeRepository.findByPhone(phone);
 
-        assertThat(expected).isFalse();
+        assertThat(actual).isEqualTo(Optional.empty());
     }
 
     @Test
     void givenExistsPhone_whenIsExistsPhone_returnTrue() {
         String phone = "099324423643";
-        Employee employee = new Employee(
+        Employee expected = new Employee(
                 "Robert",
                 "Martin",
                 "martin@gmail.com",
@@ -67,10 +68,10 @@ class EmployeeRepositoryTest {
                 phone,
                 "some url");
 
-        employeeRepository.save(employee);
+        employeeRepository.save(expected);
 
-        boolean expected = employeeRepository.isExistsPhone(phone);
+        Employee actual = employeeRepository.findByPhone(phone).get();
 
-        assertThat(expected).isTrue();
+        assertThat(actual).isEqualTo(expected);
     }
 }

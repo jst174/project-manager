@@ -3,6 +3,7 @@ package org.stepanenko.projectmanager.controller;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.stepanenko.projectmanager.exceptions.BadRequestException;
 import org.stepanenko.projectmanager.model.Employee;
 import org.stepanenko.projectmanager.service.EmployeeService;
 
@@ -35,14 +36,14 @@ public class EmployeeController {
     @CrossOrigin
     @PostMapping
     public ResponseEntity<Employee> createEmployee(@RequestBody Employee employee) {
-        Employee newEmployee = employeeService.create(employee);
+        Employee newEmployee = employeeService.save(employee);
         return new ResponseEntity<>(newEmployee, HttpStatus.CREATED);
     }
 
     @CrossOrigin
     @PutMapping
     public ResponseEntity<Employee> updateEmployee(@RequestBody Employee employee) {
-        Employee updatedEmployee = employeeService.update(employee);
+        Employee updatedEmployee = employeeService.save(employee);
         return new ResponseEntity<>(updatedEmployee, HttpStatus.OK);
     }
 

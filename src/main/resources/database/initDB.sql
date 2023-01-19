@@ -1,4 +1,6 @@
-DROP TABLE IF EXISTS employee;
+SET FOREIGN_KEY_CHECKS = 0;
+
+DROP TABLE IF EXISTS employee cascade ;
 CREATE TABLE employee
 (
     id         BIGINT AUTO_INCREMENT primary key NOT NULL,
@@ -26,15 +28,17 @@ CREATE TABLE client
     name VARCHAR(50)                       NOT NULL
 );
 
-DROP TABLE IF EXISTS project;
+DROP TABLE IF EXISTS project cascade ;
 CREATE TABLE project
 (
     id   BIGINT AUTO_INCREMENT primary key NOT NULL,
     name VARCHAR(50)                       NOT NULL,
     address_id BIGINT,
-    employee_id BIGINT,
     client_id BIGINT,
-    FOREIGN KEY (address_id) REFERENCES address (id) ON DELETE RESTRICT,
-    FOREIGN KEY (employee_id) REFERENCES employee (id) ON DELETE RESTRICT,
-    FOREIGN KEY (client_id) REFERENCES client (id) ON DELETE RESTRICT
+    employee_id BIGINT,
+    image_url  varchar(1000),
+    FOREIGN KEY (address_id) REFERENCES address (id) ON DELETE cascade ,
+    FOREIGN KEY (client_id) REFERENCES client (id) ON DELETE CASCADE ,
+    FOREIGN KEY (employee_id) REFERENCES employee (id) ON DELETE CASCADE
+
 );
