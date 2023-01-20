@@ -18,7 +18,7 @@ public class ClientService {
         this.clientRepository = clientRepository;
     }
 
-    public Client create(Client client) {
+    public Client save(Client client) {
         return clientRepository.save(client);
     }
 
@@ -26,15 +26,14 @@ public class ClientService {
         return clientRepository.findAll();
     }
 
-    public Client update(Client client) {
-        return clientRepository.save(client);
-    }
-
     public Client getById(Long id) {
         return clientRepository.findById(id).orElseThrow(() -> new EntityNotFoundException(format("Client by id = %s was not found", id)));
     }
 
     public void delete(Long id) {
+        if (!clientRepository.existsById(id)) {
+            throw new EntityNotFoundException(format("Client with id = %s was not found", id));
+        }
         clientRepository.deleteById(id);
     }
 }

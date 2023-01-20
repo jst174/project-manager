@@ -35,14 +35,14 @@ public class ClientController {
     @CrossOrigin
     @PostMapping
     public ResponseEntity<Client> createClient(@RequestBody Client client){
-        Client newClient = clientService.create(client);
+        Client newClient = clientService.save(client);
         return  new ResponseEntity<>(newClient, HttpStatus.CREATED);
     }
 
     @CrossOrigin
     @PutMapping
     public ResponseEntity<Client> updateClient(@RequestBody Client client){
-        Client updatedClient = clientService.update(client);
+        Client updatedClient = clientService.save(client);
         return new ResponseEntity<>(updatedClient, HttpStatus.OK);
     }
 
