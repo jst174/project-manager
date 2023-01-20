@@ -1,8 +1,13 @@
 package org.stepanenko.projectmanager.model;
 
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+
 import javax.persistence.*;
 import java.util.List;
 
+@Builder
+@AllArgsConstructor
 @Entity
 public class Project {
 

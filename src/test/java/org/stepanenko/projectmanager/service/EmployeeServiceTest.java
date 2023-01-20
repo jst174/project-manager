@@ -35,15 +35,7 @@ class EmployeeServiceTest {
 
     @Test
     void givenEmployee_whenSave_thenSaved() {
-        Employee employee = new Employee(
-                "Robert",
-                "Martin",
-                "martin@gmail.com",
-                "Architect",
-                "234234324",
-                "some url");
-
-        employeeServiceTest.save(employee);
+        employeeServiceTest.save(TestData.employee1);
 
         ArgumentCaptor<Employee> employeeArgumentCaptor =
                 ArgumentCaptor.forClass(Employee.class);
@@ -51,63 +43,29 @@ class EmployeeServiceTest {
         verify(employeeRepository).save(employeeArgumentCaptor.capture());
 
         Employee capturedEmployee = employeeArgumentCaptor.getValue();
-        assertThat(capturedEmployee).isEqualTo(employee);
+        assertThat(capturedEmployee).isEqualTo(TestData.employee1);
     }
 
     @Test
     void givenEmployeeWithExistingEmail_whenSave_ThenThrowException() {
-        Employee employee = new Employee(
-                "Robert",
-                "Martin",
-                "martin@gmail.com",
-                "Architect",
-                "234234324",
-                "some url");
-        employee.setId(1L);
-        Employee employee2 = new Employee(
-                "Robert",
-                "Martin",
-                "martin@gmail.com",
-                "Architect",
-                "234234324",
-                "some url");
-        employee2.setId(2L);
+        given(employeeRepository.findByEmail(TestData.employee1.getEmail())).willReturn(Optional.of(TestData.employee2));
 
-        given(employeeRepository.findByEmail(employee.getEmail())).willReturn(Optional.of(employee2));
-
-        assertThatThrownBy(() -> employeeServiceTest.save(employee))
+        assertThatThrownBy(() -> employeeServiceTest.save(TestData.employee1))
                 .isInstanceOf(BadRequestException.class)
-                .hasMessageContaining(format("Employee with email %s already exist", employee.getEmail()));
+                .hasMessageContaining(format("Employee with email %s already exist", TestData.employee1.getEmail()));
 
-        verify(employeeRepository, never()).save(employee);
+        verify(employeeRepository, never()).save(TestData.employee1);
     }
 
     @Test
     void givenEmployeeWithExistingPhoneNumber_whenSave_ThenThrowException() {
-        Employee employee = new Employee(
-                "Robert",
-                "Martin",
-                "martin@gmail.com",
-                "Architect",
-                "234234324",
-                "some url");
-        employee.setId(1L);
-        Employee employee2 = new Employee(
-                "Robert",
-                "Martin",
-                "martin@gmail.com",
-                "Architect",
-                "234234324",
-                "some url");
-        employee2.setId(2L);
+        given(employeeRepository.findByPhone(TestData.employee1.getPhone())).willReturn(Optional.of(TestData.employee2));
 
-        given(employeeRepository.findByPhone(employee.getPhone())).willReturn(Optional.of(employee2));
-
-        assertThatThrownBy(() -> employeeServiceTest.save(employee))
+        assertThatThrownBy(() -> employeeServiceTest.save(TestData.employee1))
                 .isInstanceOf(BadRequestException.class)
-                .hasMessageContaining(format("Employee with phone %s already exist", employee.getPhone()));
+                .hasMessageContaining(format("Employee with phone %s already exist", TestData.employee1.getPhone()));
 
-        verify(employeeRepository, never()).save(employee);
+        verify(employeeRepository, never()).save(TestData.employee1);
     }
 
     @Test
@@ -119,19 +77,11 @@ class EmployeeServiceTest {
 
     @Test
     void givenExistingId_whenGetById_thenReturnEmployee() {
-        Employee employee = new Employee(
-                "Robert",
-                "Martin",
-                "martin@gmail.com",
-                "Architect",
-                "234234324",
-                "some url");
-
-        given(employeeRepository.findById(any())).willReturn(Optional.of(employee));
+        given(employeeRepository.findById(any())).willReturn(Optional.of(TestData.employee1));
 
         Employee actual = employeeServiceTest.getById(any());
 
-        assertThat(actual).isEqualTo(employee);
+        assertThat(actual).isEqualTo(TestData.employee1);
 
         verify(employeeRepository).findById(any());
     }
@@ -169,5 +119,27 @@ class EmployeeServiceTest {
                 .hasMessageContaining(format("User by id = %s was not found", id));
 
         verify(employeeRepository, never()).deleteById(id);
+    }
+
+    interface TestData {
+        Employee employee1 = Employee.builder()
+                .id(1L)
+                .firstName("Robert")
+                .lastName("Martin")
+                .email("martin@gmail.com")
+                .jobTitle("Architect")
+                .phone("234234324")
+                .imageUrl("some url")
+                .build();
+
+        Employee employee2 = Employee.builder()
+                .id(2L)
+                .firstName("George")
+                .lastName("Martin")
+                .email("martin@gmail.com")
+                .jobTitle("Writer")
+                .phone("234234324")
+                .imageUrl("some url")
+                .build();
     }
 }
