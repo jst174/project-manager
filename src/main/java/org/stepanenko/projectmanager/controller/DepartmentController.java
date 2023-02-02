@@ -36,14 +36,14 @@ public class DepartmentController {
     @CrossOrigin
     @PostMapping
     public ResponseEntity<Department> createDepartment(@RequestBody Department department) {
-        Department newDepartment = departmentService.create(department);
+        Department newDepartment = departmentService.save(department);
         return new ResponseEntity<>(newDepartment, HttpStatus.CREATED);
     }
 
     @CrossOrigin
     @PutMapping
     public ResponseEntity<Department> updateDepartment(@RequestBody Department department){
-        Department updatedDepartment = departmentService.update(department);
+        Department updatedDepartment = departmentService.save(department);
         return new ResponseEntity<>(updatedDepartment, HttpStatus.OK);
     }
 
