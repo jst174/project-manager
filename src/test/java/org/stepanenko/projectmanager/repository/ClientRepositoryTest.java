@@ -7,7 +7,7 @@ import org.stepanenko.projectmanager.model.Client;
 
 import java.util.Optional;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 
 @DataJpaTest
 class ClientRepositoryTest {
@@ -16,15 +16,23 @@ class ClientRepositoryTest {
     private ClientRepository clientRepository;
 
     @Test
-    void givenExistentClientName_whenFindByName_ThenReturn() {
+    public void givenExistingClientName_whenFindByName_thenReturn() {
         String name = "Brusnika";
-        Client client = new Client(name);
+        Client expected = new Client(name);
 
-        clientRepository.save(client);
+        clientRepository.save(expected);
 
-        Client existClient = clientRepository.findByName(name).get();
+        Client actual = clientRepository.findByName(name).get();
 
-        assertEquals(client, existClient);
+        assertThat(actual).isEqualTo(expected);
+    }
 
+    @Test
+    public void givenNotExistingClientName_whenFindName_thenReturnEmpty() {
+        String name = "Brusnika";
+
+        Optional<Client> actual = clientRepository.findByName(name);
+
+        assertThat(actual).isEqualTo(Optional.empty());
     }
 }
