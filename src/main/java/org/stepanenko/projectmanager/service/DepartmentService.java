@@ -31,7 +31,8 @@ public class DepartmentService {
     }
 
     public Department getById(Long id) {
-        return departmentRepository.findById(id).orElseThrow(() -> new EntityNotFoundException(format("Department by id = %s was not found", id)));
+        return departmentRepository.findById(id).orElseThrow(() ->
+                new EntityNotFoundException(format("Department with id = %s was not found", id)));
     }
 
     public void delete(Long id) {

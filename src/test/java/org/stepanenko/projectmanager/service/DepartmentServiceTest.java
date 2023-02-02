@@ -16,7 +16,6 @@ import java.util.Optional;
 import static java.lang.String.format;
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 import static org.assertj.core.api.AssertionsForClassTypes.assertThatThrownBy;
-import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.BDDMockito.given;
 import static org.mockito.Mockito.never;
 import static org.mockito.Mockito.verify;
@@ -75,6 +74,7 @@ class DepartmentServiceTest {
         verify(departmentRepository).findById(id);
     }
 
+    @Test
     void givenNotExistingId_whenGetById_thenThrowException(){
         Long id = 2L;
 

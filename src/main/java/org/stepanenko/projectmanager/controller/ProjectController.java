@@ -36,14 +36,14 @@ public class ProjectController {
     @CrossOrigin
     @PostMapping
     public ResponseEntity<Project> createProject(@RequestBody Project project) {
-        Project newProject = projectService.create(project);
+        Project newProject = projectService.save(project);
         return new ResponseEntity<>(newProject, HttpStatus.CREATED);
     }
 
     @CrossOrigin
     @PutMapping
     public ResponseEntity<Project> updateProject(@RequestBody Project project) {
-        Project updatedProject = projectService.update(project);
+        Project updatedProject = projectService.save(project);
         return new ResponseEntity<>(updatedProject, HttpStatus.OK);
     }
 

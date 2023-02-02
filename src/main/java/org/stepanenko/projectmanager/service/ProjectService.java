@@ -18,7 +18,7 @@ public class ProjectService {
         this.projectRepository = projectRepository;
     }
 
-    public Project create(Project project) {
+    public Project save(Project project) {
         return projectRepository.save(project);
     }
 
@@ -27,14 +27,14 @@ public class ProjectService {
     }
 
     public Project getById(Long id) {
-        return projectRepository.findById(id).orElseThrow(() -> new EntityNotFoundException(format("Project by id = %s was not found", id)));
-    }
-
-    public Project update(Project project) {
-        return projectRepository.save(project);
+        return projectRepository.findById(id).orElseThrow(() ->
+                new EntityNotFoundException(format("Project with id = %s was not found", id)));
     }
 
     public void delete(Long id) {
+        if (!projectRepository.existsById(id)) {
+            throw new EntityNotFoundException(format("Project with id = %s was not found", id));
+        }
         projectRepository.deleteById(id);
     }
 }
