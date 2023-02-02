@@ -6,10 +6,13 @@ import org.mockito.ArgumentCaptor;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
+import org.stepanenko.projectmanager.exceptions.BadRequestException;
 import org.stepanenko.projectmanager.model.Client;
 import org.stepanenko.projectmanager.repository.ClientRepository;
 
 import javax.persistence.EntityNotFoundException;
+
+import java.util.Optional;
 
 import static java.lang.String.format;
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
@@ -41,6 +44,17 @@ class ClientServiceTest {
     }
 
     @Test
+    public void givenClientWithExistingName_whenSave_ThenThrowException(){
+        given(clientRepository.findByName(TestData.client1.getName())).willReturn(Optional.of(TestData.client2));
+
+        assertThatThrownBy(() -> clientService.save(TestData.client1))
+                .isInstanceOf(BadRequestException.class)
+                .hasMessageContaining(format("Client with name %s already exist", TestData.client1.getName()));
+
+        verify(clientRepository, never()).save(TestData.client1);
+    }
+
+    @Test
     void whenGetAll_thenReturnAllClients() {
         clientService.getAll();
 
@@ -48,7 +62,27 @@ class ClientServiceTest {
     }
 
     @Test
-    void getById() {
+    void givenExistingId_whenGetById_thenReturnClient() {
+        Long id = 1L;
+
+        given(clientRepository.findById(id)).willReturn(Optional.of(TestData.client1));
+
+        Client actual = clientService.getById(id);
+
+        assertThat(actual).isEqualTo(TestData.client1);
+
+        verify(clientRepository).findById(id);
+    }
+
+    @Test
+    void givenNotExistingId_whenGetById_thenThrowException(){
+        Long id = 2L;
+
+        given(clientRepository.findById(id)).willReturn(Optional.empty());
+
+        assertThatThrownBy(()-> clientService.getById(id))
+                .isInstanceOf(EntityNotFoundException.class)
+                .hasMessageContaining(format("Client with id = %s was not found", id));
     }
 
     @Test
