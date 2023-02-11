@@ -4,6 +4,7 @@ import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
+import org.stepanenko.projectmanager.model.Department;
 import org.stepanenko.projectmanager.model.Employee;
 
 import java.util.Optional;
@@ -39,7 +40,8 @@ class EmployeeRepositoryTest {
                 email,
                 "Architect",
                 "234234324",
-                "some url");
+                "some url",
+                new Department());
 
         employeeRepository.save(expected);
 
@@ -66,7 +68,8 @@ class EmployeeRepositoryTest {
                 "martin@gmail.com",
                 "Architect",
                 phone,
-                "some url");
+                "some url",
+                new Department());
 
         employeeRepository.save(expected);
 

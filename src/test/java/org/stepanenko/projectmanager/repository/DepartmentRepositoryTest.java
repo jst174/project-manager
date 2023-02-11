@@ -7,6 +7,7 @@ import org.stepanenko.projectmanager.model.Department;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 
@@ -19,7 +20,7 @@ class DepartmentRepositoryTest {
     @Test
     public void givenExistingDepartmentName_whenFindByName_thenReturnDepartment() {
         String name = "AR";
-        Department expected = new Department(name, List.of());
+        Department expected = new Department(name, Set.of());
 
         departmentRepository.save(expected);
 

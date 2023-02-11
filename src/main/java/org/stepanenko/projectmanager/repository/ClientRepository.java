@@ -9,7 +9,6 @@ import java.util.Optional;
 
 public interface ClientRepository extends JpaRepository<Client, Long> {
 
-    @Query("SELECT c FROM Client c WHERE c.name = :name")
-    Optional<Client> findByName(@Param("name") String name);
+    Optional<Client> findByName(String name);
 
 }
