@@ -4,6 +4,7 @@ import org.springframework.stereotype.Service;
 import org.stepanenko.projectmanager.exceptions.BadRequestException;
 import org.stepanenko.projectmanager.model.Client;
 import org.stepanenko.projectmanager.model.Department;
+import org.stepanenko.projectmanager.model.Employee;
 import org.stepanenko.projectmanager.repository.DepartmentRepository;
 
 import javax.persistence.EntityNotFoundException;

@@ -3,7 +3,6 @@ package org.stepanenko.projectmanager.controller;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import org.stepanenko.projectmanager.exceptions.BadRequestException;
 import org.stepanenko.projectmanager.model.Employee;
 import org.stepanenko.projectmanager.service.EmployeeService;
 

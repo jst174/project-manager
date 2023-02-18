@@ -20,6 +20,7 @@ public class EmployeeService {
         this.employeeRepository = employeeRepository;
     }
 
+
     public Employee save(Employee employee) {
         verifyEmailUnique(employee);
         verifyPhoneUnique(employee);
@@ -59,4 +60,7 @@ public class EmployeeService {
         }
     }
 
+    public List<Employee> getEmployeesByDepartmentId(Long id) {
+        return employeeRepository.getEmployeesByDepartmentId(id);
+    }
 }

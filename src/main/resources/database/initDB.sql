@@ -1,5 +1,12 @@
 SET FOREIGN_KEY_CHECKS = 0;
 
+DROP TABLE IF EXISTS department;
+CREATE TABLE department
+(
+    id   BIGINT AUTO_INCREMENT primary key NOT NULL,
+    name VARCHAR(50)                       NOT NULL
+);
+
 DROP TABLE IF EXISTS employee cascade ;
 CREATE TABLE employee
 (
@@ -9,7 +16,9 @@ CREATE TABLE employee
     email      VARCHAR(50)                       NOT NULL,
     job_title  VARCHAR(50)                       NOT NULL,
     phone      VARCHAR(50)                       NOT NULL,
-    image_url  varchar(1000)
+    image_url  varchar(1000),
+    department_id BIGINT,
+    FOREIGN KEY (department_id) references department (id)
 );
 
 DROP TABLE IF EXISTS address;

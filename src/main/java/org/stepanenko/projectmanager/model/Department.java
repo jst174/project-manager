@@ -5,25 +5,23 @@ import lombok.Builder;
 
 import javax.persistence.*;
 import java.util.List;
+import java.util.Set;
 
 @Builder
 @AllArgsConstructor
 @Entity
-public class Department {
+public class  Department {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String name;
-    @OneToMany
-    private List<Employee> employees;
 
     public Department() {
     }
 
-    public Department(String name, List<Employee> employees) {
+    public Department(String name) {
         this.name = name;
-        this.employees = employees;
     }
 
     public Long getId() {
@@ -40,13 +38,5 @@ public class Department {
 
     public void setName(String name) {
         this.name = name;
-    }
-
-    public List<Employee> getEmployees() {
-        return employees;
-    }
-
-    public void setEmployees(List<Employee> employees) {
-        this.employees = employees;
     }
 }

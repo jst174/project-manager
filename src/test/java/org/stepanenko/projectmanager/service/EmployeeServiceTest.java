@@ -8,6 +8,7 @@ import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.stepanenko.projectmanager.exceptions.BadRequestException;
 import org.stepanenko.projectmanager.model.Employee;
+import org.stepanenko.projectmanager.repository.DepartmentRepository;
 import org.stepanenko.projectmanager.repository.EmployeeRepository;
 
 import javax.persistence.EntityNotFoundException;

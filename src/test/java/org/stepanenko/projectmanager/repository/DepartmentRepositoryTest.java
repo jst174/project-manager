@@ -20,7 +20,7 @@ class DepartmentRepositoryTest {
     @Test
     public void givenExistingDepartmentName_whenFindByName_thenReturnDepartment() {
         String name = "AR";
-        Department expected = new Department(name, Set.of());
+        Department expected = new Department(name);
 
         departmentRepository.save(expected);
 
