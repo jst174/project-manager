@@ -7,7 +7,7 @@ import javax.persistence.*;
 import java.util.List;
 
 @Builder
-@AllArgsConstructor 
+@AllArgsConstructor
 @Entity
 public class Project {
 
@@ -26,7 +26,8 @@ public class Project {
     @JoinColumn(name = "employee_id")
     private Employee projectManager;
     private String imageUrl;
-    //private List<Employee> employees;
+    @ManyToMany(mappedBy = "projects")
+    private List<Employee> employees;
 
 
     public Project() {
@@ -86,5 +87,13 @@ public class Project {
 
     public void setImageUrl(String imageUrl) {
         this.imageUrl = imageUrl;
+    }
+
+    public List<Employee> getEmployees() {
+        return employees;
+    }
+
+    public void setEmployees(List<Employee> employees) {
+        this.employees = employees;
     }
 }

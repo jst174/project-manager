@@ -1,10 +1,11 @@
 package org.stepanenko.projectmanager.model;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Builder
 @AllArgsConstructor
@@ -24,6 +25,14 @@ public class Employee {
     @ManyToOne
     @JoinColumn(name = "department_id")
     private Department department;
+    @ManyToMany
+    @JoinTable(
+            name = "project_employee",
+            joinColumns = @JoinColumn(name = "employee_id"),
+            inverseJoinColumns = @JoinColumn(name = "project_id")
+    )
+    @JsonIgnore
+    private List<Project> projects;
 
     public Employee() {
 
@@ -104,6 +113,11 @@ public class Employee {
         return department;
     }
 
+    public List<Project> getProjects() {
+        return projects;
+    }
 
-
+    public void setProjects(List<Project> projects) {
+        this.projects = projects;
+    }
 }

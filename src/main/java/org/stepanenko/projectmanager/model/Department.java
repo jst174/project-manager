@@ -3,9 +3,10 @@ package org.stepanenko.projectmanager.model;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 
-import javax.persistence.*;
-import java.util.List;
-import java.util.Set;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 
 @Builder
 @AllArgsConstructor
