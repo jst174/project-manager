@@ -26,7 +26,6 @@ public class ClientService {
 
     public Client save(Client client) {
         log.info("Save client {}", client.getName());
-        verifyNameUnique(client);
         return clientRepository.save(client);
     }
 
@@ -46,14 +45,5 @@ public class ClientService {
             throw new EntityNotFoundException(format("Client with id = %s was not found", id));
         }
         clientRepository.deleteById(id);
-    }
-
-    private void verifyNameUnique(Client client) {
-        if (clientRepository.findByName(client.getName())
-                .filter(e -> !Objects.equals(e.getId(), client.getId()))
-                .isPresent()) {
-            throw new BadRequestException(
-                    format("Client with name %s already exist", client.getName()));
-        }
     }
 }

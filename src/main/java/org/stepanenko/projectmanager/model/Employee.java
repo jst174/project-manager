@@ -3,9 +3,11 @@ package org.stepanenko.projectmanager.model;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
-import org.hibernate.annotations.Cascade;
 
 import javax.persistence.*;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.Size;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -18,10 +20,18 @@ public class Employee {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(nullable = false, updatable = false)
     private Long id;
+    @NotEmpty(message = "First name must not be empty")
+    @Size(min = 2, max = 50, message = "First name must be between 2 and 50 characters long")
     private String firstName;
+    @NotEmpty(message = "Last name must not be empty")
+    @Size(min = 2, max = 100, message = "Last name must be between 2 and 100 characters long")
     private String lastName;
+    @NotEmpty(message = "Email must not be empty")
+    @Email(message = "Email must be valid")
     private String email;
+    @NotEmpty(message = "Job title must not be empty")
     private String jobTitle;
+    @NotEmpty(message = "Phone number must not be empty")
     private String phone;
     private String imageUrl;
     @ManyToOne

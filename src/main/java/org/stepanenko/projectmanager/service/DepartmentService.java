@@ -9,7 +9,6 @@ import org.stepanenko.projectmanager.repository.DepartmentRepository;
 import javax.persistence.EntityNotFoundException;
 import javax.transaction.Transactional;
 import java.util.List;
-import java.util.Objects;
 
 import static java.lang.String.format;
 
@@ -28,7 +27,6 @@ public class DepartmentService {
 
     public Department save(Department department) {
         log.info("Save department {}", department.getName());
-        verifyNameUnique(department);
         return departmentRepository.save(department);
     }
 
@@ -52,14 +50,5 @@ public class DepartmentService {
             throw new BadRequestException(format("Department with id = %s cannot be deleted because it has employees", id));
         }
         departmentRepository.deleteById(id);
-    }
-
-    private void verifyNameUnique(Department department) {
-        if (departmentRepository.findByName(department.getName())
-                .filter(e -> !Objects.equals(e.getId(), department.getId()))
-                .isPresent()) {
-            throw new BadRequestException(
-                    format("Department with name %s already exist", department.getName()));
-        }
     }
 }

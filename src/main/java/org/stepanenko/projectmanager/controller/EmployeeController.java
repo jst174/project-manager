@@ -2,12 +2,16 @@ package org.stepanenko.projectmanager.controller;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.stepanenko.projectmanager.model.Employee;
 import org.stepanenko.projectmanager.model.Project;
 import org.stepanenko.projectmanager.service.EmployeeService;
 import org.stepanenko.projectmanager.service.ProjectService;
+import org.stepanenko.projectmanager.util.CheckValidationErrors;
+import org.stepanenko.projectmanager.util.validator.EmployeeValidator;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @RestController
@@ -16,10 +20,12 @@ public class EmployeeController {
 
     private final EmployeeService employeeService;
     private final ProjectService projectService;
+    private final EmployeeValidator employeeValidator;
 
-    public EmployeeController(EmployeeService employeeService, ProjectService projectService) {
+    public EmployeeController(EmployeeService employeeService, ProjectService projectService, EmployeeValidator employeeValidator) {
         this.employeeService = employeeService;
         this.projectService = projectService;
+        this.employeeValidator = employeeValidator;
     }
 
     @CrossOrigin
@@ -38,14 +44,20 @@ public class EmployeeController {
 
     @CrossOrigin
     @PostMapping
-    public ResponseEntity<Employee> createEmployee(@RequestBody Employee employee) {
+    public ResponseEntity<Employee> createEmployee(@RequestBody @Valid Employee employee,
+                                                   BindingResult bindingResult) {
+        employeeValidator.validate(employee, bindingResult);
+        CheckValidationErrors.check(bindingResult);
         Employee newEmployee = employeeService.save(employee);
         return new ResponseEntity<>(newEmployee, HttpStatus.CREATED);
     }
 
     @CrossOrigin
     @PutMapping
-    public ResponseEntity<Employee> updateEmployee(@RequestBody Employee employee) {
+    public ResponseEntity<Employee> updateEmployee(@RequestBody @Valid Employee employee,
+                                                   BindingResult bindingResult) {
+        employeeValidator.validate(employee, bindingResult);
+        CheckValidationErrors.check(bindingResult);
         Employee updatedEmployee = employeeService.save(employee);
         return new ResponseEntity<>(updatedEmployee, HttpStatus.OK);
     }
@@ -59,7 +71,7 @@ public class EmployeeController {
 
     @CrossOrigin
     @GetMapping("{id}/projects")
-    public ResponseEntity<List<Project>> getProjectsByEmployeeId(@PathVariable Long id){
+    public ResponseEntity<List<Project>> getProjectsByEmployeeId(@PathVariable Long id) {
         List<Project> projects = projectService.getProjectsByEmployeeId(id);
         return new ResponseEntity<>(projects, HttpStatus.OK);
     }
