@@ -47,7 +47,7 @@ public class ClientController {
     }
 
     @CrossOrigin
-    @PutMapping("{id}")
+    @DeleteMapping("{id}")
     public ResponseEntity<Client> deleteClient(@PathVariable Long id){
         clientService.delete(id);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);

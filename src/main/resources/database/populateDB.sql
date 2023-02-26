@@ -52,13 +52,13 @@ VALUES (3, 'LSR');
 INSERT INTO client (id, name)
 VALUES (4, 'GLORAX');
 
-INSERT INTO project (id, name, address_id, client_id, employee_id, image_url)
-values (1, 'Living house', 1, 1, 1, 'http://dummyimage.com/250x250.png/dddddd/000000');
-INSERT INTO project (id, name, address_id, client_id, employee_id, image_url)
-values (2, 'Factory', 2, 2, 2, 'http://dummyimage.com/250x250.png/ff4444/ffffff');
-INSERT INTO project (id, name, address_id, client_id, employee_id, image_url)
-values (3, 'Supermarket', 3, 3, 3, 'http://dummyimage.com/250x250.png/5fa2dd/ffffff');
-INSERT INTO project (id, name, address_id, client_id, employee_id, image_url)
-values (4, 'Mall', 4, 4, 4, 'http://dummyimage.com/250x250.png/dddddd/000000');
-INSERT INTO project (id, name, address_id, client_id, employee_id, image_url)
-values (5, 'Living house 2', 5, 2, 5, 'http://dummyimage.com/250x250.png/5fa2dd/ffffff');
+INSERT INTO project (id, name, address_id, client_id, image_url)
+values (1, 'Living house', 1, 1, 'http://dummyimage.com/250x250.png/dddddd/000000');
+INSERT INTO project (id, name, address_id, client_id, image_url)
+values (2, 'Factory', 2, 2, 'http://dummyimage.com/250x250.png/ff4444/ffffff');
+INSERT INTO project (id, name, address_id, client_id, image_url)
+values (3, 'Supermarket', 3, 3, 'http://dummyimage.com/250x250.png/5fa2dd/ffffff');
+INSERT INTO project (id, name, address_id, client_id, image_url)
+values (4, 'Mall', 4, 4, 'http://dummyimage.com/250x250.png/dddddd/000000');
+INSERT INTO project (id, name, address_id, client_id, image_url)
+values (5, 'Living house 2', 5, 2, 'http://dummyimage.com/250x250.png/5fa2dd/ffffff');

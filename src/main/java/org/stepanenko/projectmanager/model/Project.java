@@ -2,8 +2,10 @@ package org.stepanenko.projectmanager.model;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
+import org.hibernate.annotations.Cascade;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.List;
 
 @Builder
@@ -22,22 +24,23 @@ public class Project {
     @ManyToOne
     @JoinColumn(name = "client_id")
     private Client client;
-    @ManyToOne
-    @JoinColumn(name = "employee_id")
-    private Employee projectManager;
     private String imageUrl;
-    @ManyToMany(mappedBy = "projects")
-    private List<Employee> employees;
+    @ManyToMany
+    @JoinTable(
+            name = "project_employee",
+            joinColumns = @JoinColumn(name = "project_id", referencedColumnName = "id"),
+            inverseJoinColumns = @JoinColumn(name = "employee_id", referencedColumnName = "id")
+    )
+    private List<Employee> employees = new ArrayList<>();
 
 
     public Project() {
     }
 
-    public Project(String name, Address address, Client client, Employee projectManager, String imageUrl) {
+    public Project(String name, Address address, Client client, String imageUrl) {
         this.name = name;
         this.address = address;
         this.client = client;
-        this.projectManager = projectManager;
         this.imageUrl = imageUrl;
     }
 
@@ -71,14 +74,6 @@ public class Project {
 
     public void setClient(Client client) {
         this.client = client;
-    }
-
-    public Employee getProjectManager() {
-        return projectManager;
-    }
-
-    public void setProjectManager(Employee projectManager) {
-        this.projectManager = projectManager;
     }
 
     public String getImageUrl() {

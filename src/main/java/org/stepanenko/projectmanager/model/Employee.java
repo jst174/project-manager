@@ -3,8 +3,10 @@ package org.stepanenko.projectmanager.model;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
+import org.hibernate.annotations.Cascade;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.List;
 
 @Builder
@@ -25,14 +27,9 @@ public class Employee {
     @ManyToOne
     @JoinColumn(name = "department_id")
     private Department department;
-    @ManyToMany
-    @JoinTable(
-            name = "project_employee",
-            joinColumns = @JoinColumn(name = "employee_id"),
-            inverseJoinColumns = @JoinColumn(name = "project_id")
-    )
+    @ManyToMany(mappedBy = "employees")
     @JsonIgnore
-    private List<Project> projects;
+    private List<Project> projects = new ArrayList<>();
 
     public Employee() {
 

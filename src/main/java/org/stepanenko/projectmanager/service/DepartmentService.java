@@ -19,9 +19,11 @@ import static java.lang.String.format;
 public class DepartmentService {
 
     private final DepartmentRepository departmentRepository;
+    private final EmployeeService employeeService;
 
-    public DepartmentService(DepartmentRepository departmentRepository) {
+    public DepartmentService(DepartmentRepository departmentRepository, EmployeeService employeeService) {
         this.departmentRepository = departmentRepository;
+        this.employeeService = employeeService;
     }
 
     public Department save(Department department) {
@@ -45,6 +47,9 @@ public class DepartmentService {
         log.info("Delete department by id = {}", id);
         if (!departmentRepository.existsById(id)) {
             throw new EntityNotFoundException(format("Department with id = %s was not found", id));
+        }
+        if (!employeeService.getEmployeesByDepartmentId(id).isEmpty()){
+            throw new BadRequestException(format("Department with id = %s cannot be deleted because it has employees", id));
         }
         departmentRepository.deleteById(id);
     }
