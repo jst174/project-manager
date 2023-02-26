@@ -4,7 +4,9 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.stepanenko.projectmanager.model.Employee;
+import org.stepanenko.projectmanager.model.Project;
 import org.stepanenko.projectmanager.service.EmployeeService;
+import org.stepanenko.projectmanager.service.ProjectService;
 
 import java.util.List;
 
@@ -13,9 +15,11 @@ import java.util.List;
 public class EmployeeController {
 
     private final EmployeeService employeeService;
+    private final ProjectService projectService;
 
-    public EmployeeController(EmployeeService employeeService) {
+    public EmployeeController(EmployeeService employeeService, ProjectService projectService) {
         this.employeeService = employeeService;
+        this.projectService = projectService;
     }
 
     @CrossOrigin
@@ -51,5 +55,12 @@ public class EmployeeController {
     public ResponseEntity<Employee> deleteEmployee(@PathVariable Long id) {
         employeeService.delete(id);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+    }
+
+    @CrossOrigin
+    @GetMapping("{id}/projects")
+    public ResponseEntity<List<Project>> getProjectsByEmployeeId(@PathVariable Long id){
+        List<Project> projects = projectService.getProjectsByEmployeeId(id);
+        return new ResponseEntity<>(projects, HttpStatus.OK);
     }
 }

@@ -45,4 +45,9 @@ public class ProjectService {
         }
         projectRepository.deleteById(id);
     }
+
+    public List<Project> getProjectsByEmployeeId(Long id) {
+        log.info("Get projects by employee's id = {}", id);
+        return projectRepository.findProjectsByEmployees_Id(id);
+    }
 }
