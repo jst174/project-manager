@@ -2,9 +2,11 @@ package org.stepanenko.projectmanager.model;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
-import org.hibernate.annotations.Cascade;
 
 import javax.persistence.*;
+import javax.validation.Valid;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.Size;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -17,9 +19,12 @@ public class Project {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(nullable = false, updatable = false)
     private Long id;
+    @NotEmpty(message = "Name must not be empty")
+    @Size(min = 2, max = 50, message = "Name must be between 2 and 50 characters long")
     private String name;
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "address_id")
+    @Valid
     private Address address;
     @ManyToOne
     @JoinColumn(name = "client_id")
