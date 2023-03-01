@@ -37,6 +37,8 @@ public class Employee {
     @ManyToOne
     @JoinColumn(name = "department_id")
     private Department department;
+    @NotEmpty(message = "Password must not be empty")
+    private String password;
     @ManyToMany(mappedBy = "employees")
     @JsonIgnore
     private List<Project> projects = new ArrayList<>();
@@ -118,6 +120,14 @@ public class Employee {
 
     public Department getDepartment() {
         return department;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
 
     public List<Project> getProjects() {

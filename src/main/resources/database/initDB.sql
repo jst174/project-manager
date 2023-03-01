@@ -17,6 +17,7 @@ CREATE TABLE employee
     job_title     VARCHAR(50)                       NOT NULL,
     phone         VARCHAR(50) UNIQUE                NOT NULL,
     image_url     varchar(1000),
+    password      VARCHAR(100)                      NOT NULL,
     department_id BIGINT,
     FOREIGN KEY (department_id) references department (id) on update cascade
 );

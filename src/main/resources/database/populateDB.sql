@@ -7,28 +7,28 @@ VALUES (3, 'HVAC');
 
 INSERT INTO employee
 VALUES (1, 'Perceval', 'Franchi', 'pfranchi0@sitemeter.com', 'Staff Accountant III', '918-974-5150',
-        'https://www.bootdey.com/img/Content/avatar/avatar1.png', 1);
+        'https://www.bootdey.com/img/Content/avatar/avatar1.png', '$2a$04$XkGKXwasz5CihtJpaVqUZumYqWcVXmEcC/.GTMuP4c7pgWJSz.vDi', 1);
 INSERT INTO employee
 VALUES (2, 'Munroe', 'Butson', 'mbutson1@bluehost.com', 'Staff Accountant II', '552-330-8924',
-        'https://www.bootdey.com/img/Content/avatar/avatar2.png', 2);
+        'https://www.bootdey.com/img/Content/avatar/avatar2.png', '$2a$04$XkGKXwasz5CihtJpaVqUZumYqWcVXmEcC/.GTMuP4c7pgWJSz.vDi', 2);
 INSERT INTO employee
 VALUES (3, 'Cam', 'Espinos', 'cespinos2@pinterest.com', 'Structural Analysis Engineer', '891-835-7039',
-        'https://www.bootdey.com/img/Content/avatar/avatar3.png', 3);
+        'https://www.bootdey.com/img/Content/avatar/avatar3.png', '$2a$04$XkGKXwasz5CihtJpaVqUZumYqWcVXmEcC/.GTMuP4c7pgWJSz.vDi', 3);
 INSERT INTO employee
 VALUES (4, 'Kimmie', 'Lazenbury', 'klazenbury3@gnu.org', 'VP Product Management', '514-wewewe570-2309',
-        'https://www.bootdey.com/img/Content/avatar/avatar4.png', 1);
+        'https://www.bootdey.com/img/Content/avatar/avatar4.png', '$2a$04$XkGKXwasz5CihtJpaVqUZumYqWcVXmEcC/.GTMuP4c7pgWJSz.vDi', 1);
 INSERT INTO employee
 VALUES (5, 'Kimmie', 'Lazenbury', 'klaze32nbury3@gnu.org', 'VP Product Management', '514-e570-2309',
-        'https://www.bootdey.com/img/Content/avatar/avatar5.png', 2);
+        'https://www.bootdey.com/img/Content/avatar/avatar5.png', '$2a$04$XkGKXwasz5CihtJpaVqUZumYqWcVXmEcC/.GTMuP4c7pgWJSz.vDi', 2);
 INSERT INTO employee
 VALUES (6, 'Kimmie', 'Lazenbury', 'klaze23nbury3@gnu.org', 'VP Product Management', '514-we570-2309',
-        'https://www.bootdey.com/img/Content/avatar/avatar2.png',3);
+        'https://www.bootdey.com/img/Content/avatar/avatar2.png', '$2a$04$XkGKXwasz5CihtJpaVqUZumYqWcVXmEcC/.GTMuP4c7pgWJSz.vDi', 3);
 INSERT INTO employee
 VALUES (7, 'Kimmie', 'Lazenbury', 'klazen121bury3@gnu.org', 'VP Product Management', '514-5we70-2309',
-        'https://www.bootdey.com/img/Content/avatar/avatar3.png',1);
+        'https://www.bootdey.com/img/Content/avatar/avatar3.png', '$2a$04$XkGKXwasz5CihtJpaVqUZumYqWcVXmEcC/.GTMuP4c7pgWJSz.vDi', 1);
 INSERT INTO employee
 VALUES (8, 'Kimmie', 'Lazenbury', 'klazenb32323ury3@gnu.org', 'VP Product Management', '514-57we0-2309',
-        'https://www.bootdey.com/img/Content/avatar/avatar4.png',3);
+        'https://www.bootdey.com/img/Content/avatar/avatar4.png', '$2a$04$XkGKXwasz5CihtJpaVqUZumYqWcVXmEcC/.GTMuP4c7pgWJSz.vDi', 3);
 
 
 

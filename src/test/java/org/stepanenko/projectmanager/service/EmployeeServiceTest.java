@@ -6,9 +6,9 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.ArgumentCaptor;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.stepanenko.projectmanager.exceptions.BadRequestException;
 import org.stepanenko.projectmanager.model.Employee;
-import org.stepanenko.projectmanager.repository.DepartmentRepository;
 import org.stepanenko.projectmanager.repository.EmployeeRepository;
 
 import javax.persistence.EntityNotFoundException;
@@ -28,10 +28,11 @@ class EmployeeServiceTest {
     @Mock
     private EmployeeRepository employeeRepository;
     private EmployeeService employeeServiceTest;
+    private PasswordEncoder passwordEncoder;
 
     @BeforeEach
     void setUp() {
-        employeeServiceTest = new EmployeeService(employeeRepository);
+        employeeServiceTest = new EmployeeService(employeeRepository, passwordEncoder);
     }
 
     @Test

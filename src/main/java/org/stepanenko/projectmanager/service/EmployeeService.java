@@ -1,6 +1,7 @@
 package org.stepanenko.projectmanager.service;
 
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.stepanenko.projectmanager.model.Employee;
 import org.stepanenko.projectmanager.repository.EmployeeRepository;
@@ -17,14 +18,17 @@ import static java.lang.String.format;
 public class EmployeeService {
 
     private final EmployeeRepository employeeRepository;
+    private final PasswordEncoder passwordEncoder;
 
-    public EmployeeService(EmployeeRepository employeeRepository) {
+    public EmployeeService(EmployeeRepository employeeRepository, PasswordEncoder passwordEncoder) {
         this.employeeRepository = employeeRepository;
+        this.passwordEncoder = passwordEncoder;
     }
 
 
     public Employee save(Employee employee) {
         log.info("Save employee {} {}", employee.getFirstName(), employee.getLastName());
+        employee.setPassword(passwordEncoder.encode(employee.getPassword()));
         return employeeRepository.save(employee);
     }
 
